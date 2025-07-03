@@ -4,6 +4,11 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { StoreContext } from "../../context/StoreContext";
 
+// Icon
+import { HiMenu } from "react-icons/hi";
+import { IoSearch } from "react-icons/io5";
+import { FaCartArrowDown } from "react-icons/fa";
+
 const Navbar = ({ setShowLogin }) => {
 
     const [menu, setMenu] = useState("menu");
@@ -12,21 +17,25 @@ const Navbar = ({ setShowLogin }) => {
 
 
     return (
+        
         <div className="navbar">
-          <Link to='/'> <img src={assets.logo} alt="" className="logo" /></Link> 
+            <div className="menu-icon">
+                <Link to='/' onClick={() => setMenu("#")} className={menu === "#" ? "active" : ""}> <HiMenu /> </Link>
+            </div>
             <ul className="navbar-menu">
-                <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>home</Link>
-                <a href="#explore-menu" onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>menu</a>
-                <a href="#app-download" onClick={() => setMenu("moblie-app")} className={menu === "mobile-app" ? "active" : ""}>mobile-app</a>
-                <a href="#footer" onClick={() => setMenu("contact us")} className={menu === "contact us" ? "active" : ""}>contact us</a>
+                <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}> Home </Link>
+                <a href="#" onClick={() => setMenu("#")} className={menu === "#" ? "active" : ""}> Favourite </a>
+                <a href="#" onClick={() => setMenu("#")} className={menu === "#" ? "active" : ""}> Message </a>
+                <a href="#" onClick={() => setMenu("#")} className={menu === "#" ? "active" : ""}> Promotion </a>
+                <a href="#" onClick={() => setMenu("#")} className={menu === "#" ? "active" : ""}> Profile </a>
             </ul>
             <div className="navbar-right">
-                <img src={assets.search_icon} alt="" />
+                <IoSearch />
                 <div className="navbar-search_icon">
-                  <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>  
+                  <Link to='/cart'> <FaCartArrowDown /> </Link>  
                     <div className={getTotalCartAmount()===0?"":"dot"}></div>
                 </div>
-                <button onClick={() => setShowLogin(true)}>Sign In</button>
+                
             </div>
         </div>
     )
